@@ -1,0 +1,16 @@
+---
+galaxy_info:
+  author: Glen Johnson
+  description: Elasticsearch ansible role
+  company: nil
+  license: Apache
+  min_ansible_version: 1.2
+  platforms:
+  - name: EL
+    versions:
+    - 7
+  categories:
+  - database:nosql
+  - system
+#dependencies:
+#  - { role: "azavea.unzip" }
