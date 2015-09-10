@@ -1,0 +1,20 @@
+---
+# defaults file for elasticsearch-role
+
+es_version: 1.4
+
+es_conf_dir: "/etc/elasticsearch"
+
+es_cluster_hosts:
+  - 127.0.0.1
+
+es_cluster: es_dev
+es_zone: os
+es_shards: 2
+es_replicas: 0
+
+es_svc_enabled: yes
+es_svc_state: started
+
+es_yum_java_pkgs:
+  - java-1.7.0-openjdk

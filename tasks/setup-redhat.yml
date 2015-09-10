@@ -1,0 +1,18 @@
+---
+#- name: add rpm key
+#  rpm_key:
+#    key: http://packages.elasticsearch.org/GPG-KEY-elasticsearch
+#    state: present
+
+- name: add repo
+  template:
+    src: elasticsearch.repo.j2
+    dest: /etc/yum.repos.d/elasticsearch.repo
+    mode: 0644
+
+- name: install java
+  yum: name={{ item }} state=latest
+  with_items: es_yum_java_pkgs
+
+- name: install es
+  yum: pkg=elasticsearch state=installed enablerepo=elasticsearch-1.4

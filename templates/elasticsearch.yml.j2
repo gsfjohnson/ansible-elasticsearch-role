@@ -1,0 +1,17 @@
+index.number_of_shards: {{ es_shards }}
+index.number_of_replicas: {{ es_replicas }}
+
+bootstrap.mlockall: true
+
+cluster.name: {{ es_cluster }}
+cluster.routing.allocation.awareness.force.zone.values: bdc,hdr,aws,os
+cluster.routing.allocation.awareness.attributes: zone
+
+node.name: {{ ansible_hostname }}
+node.zone: {{ es_zone }}
+
+network.host: 0.0.0.0
+
+discovery.zen.ping.multicast.enabled: false
+discovery.zen.ping.unicast.hosts: {{ es_cluster_hosts | to_json }}
+
