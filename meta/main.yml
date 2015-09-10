@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  author: Glen Johnson
+  author: gsfjohnson
   description: Elasticsearch ansible role
   company: nil
   license: Apache
@@ -13,4 +13,3 @@ galaxy_info:
   - database:nosql
   - system
 dependencies:
-#  - { role: "azavea.unzip" }
