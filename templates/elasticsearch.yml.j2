@@ -5,11 +5,13 @@ bootstrap.mlockall: true
 
 {% if es_cluster is not none %}cluster.name: {{ es_cluster }}{% endif %}
 
-{% if es_cluster_zones is not none %}
+{% if es_cluster_zones|length > 0 %}
+{% if es_zone is not none %}
 # cluster zoning
 cluster.routing.allocation.awareness.attributes: zone
 cluster.routing.allocation.awareness.force.zone.values: {{ es_cluster_zones }}
 node.zone: {{ es_zone }}
+{% endif %}
 {% endif %}
 
 node.name: {{ ansible_hostname }}
@@ -17,7 +19,7 @@ node.name: {{ ansible_hostname }}
 network.host: {{ es_network_host }}
 
 discovery.zen.ping.multicast.enabled: {{ es_discovery_multicast }}
-{% if es_cluster_hosts is not none %}
+{% if es_cluster_hosts|length > 0 %}
 discovery.zen.ping.unicast.hosts: {{ es_cluster_hosts | to_json }}
 {% endif %}
 
