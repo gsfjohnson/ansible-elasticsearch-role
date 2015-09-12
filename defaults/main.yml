@@ -9,6 +9,7 @@ es_network_host: 127.0.0.1
 es_discovery_multicast: false
 es_cluster_hosts: []
 
+es_cluster_zones: []
 es_cluster:
 es_zone: 
 es_shards: 2
