@@ -3,7 +3,7 @@ index.number_of_replicas: {{ es_replicas }}
 
 bootstrap.mlockall: true
 
-cluster.name: {{ es_cluster }}
+{% if es_cluster is not none %}cluster.name: {{ es_cluster }}{% endif %}
 
 {% if es_cluster_zones is not none %}
 # cluster zoning
