@@ -4,14 +4,20 @@ index.number_of_replicas: {{ es_replicas }}
 bootstrap.mlockall: true
 
 cluster.name: {{ es_cluster }}
-cluster.routing.allocation.awareness.force.zone.values: bdc,hdr,aws,os
+
+{% if es_cluster_zones is not none %}
+# cluster zoning
 cluster.routing.allocation.awareness.attributes: zone
+cluster.routing.allocation.awareness.force.zone.values: {{ es_cluster_zones }}
+node.zone: {{ es_zone }}
+{% endif %}
 
 node.name: {{ ansible_hostname }}
-node.zone: {{ es_zone }}
 
-network.host: 0.0.0.0
+network.host: {{ es_network_host }}
 
-discovery.zen.ping.multicast.enabled: false
+discovery.zen.ping.multicast.enabled: {{ es_discovery_multicast }}
+{% if es_cluster_hosts is not none %}
 discovery.zen.ping.unicast.hosts: {{ es_cluster_hosts | to_json }}
+{% endif %}
 

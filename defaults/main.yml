@@ -5,8 +5,9 @@ es_version: 1.4
 
 es_conf_dir: "/etc/elasticsearch"
 
-es_cluster_hosts:
-  - 127.0.0.1
+es_network_host: 127.0.0.1
+es_discovery_multicast: false
+es_cluster_hosts: []
 
 es_cluster: es_dev
 es_zone: os
