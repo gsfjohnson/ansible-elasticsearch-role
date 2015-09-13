@@ -29,24 +29,26 @@
 #  - { name: 'facet-script', url: 'http://dl.bintray.com/content/imotov/elasticsearch-plugins/elasticsearch-facet-script-1.1.2.zip' }
 
 # Loop though es_plugins and install them
-- name: remove plugins if they exist
-  action: >
-    shell bin/plugin --remove {{ item.name }}
-    chdir={{ es_home_dir }}
-  with_items: es_plugins
-  ignore_errors: yes
+#- name: remove plugins if they exist
+#  action: >
+#    shell bin/plugin --remove {{ item.name }}
+#    chdir={{ es_home_dir }}
+#  with_items: es_plugins
+#  ignore_errors: yes
 - name: install plugins by Name
-  action: >
-    shell bin/plugin -install {{ item.name }}
-    chdir={{ es_home_dir }}
-  when: item.url is not defined
+  shell: bin/plugin -install {{ item.name }}
+  args:
+    chdir: "{{ es_home_dir }}"
+    creates: "{{es_plugins_dir}}/{{item.dir}}"
+  when: item.url is not defined and item.dir is defined
   with_items: es_plugins
   ignore_errors: yes
 - name: install plugins by URL
-  action: >
-    shell bin/plugin -install {{ item.name }} -url {{ item.url }}
-    chdir={{ es_home_dir }}
-  when: item.url is defined
+  shell: bin/plugin -install {{ item.name }} -url {{ item.url }}
+  args:
+    chdir: "{{ es_home_dir }}"
+    creates: "{{es_plugins_dir}}/{{item.dir}}"
+  when: item.url is defined and item.dir is defined
   with_items: es_plugins
   ignore_errors: yes
 # Fix permissions
