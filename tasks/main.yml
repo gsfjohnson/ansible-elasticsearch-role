@@ -19,3 +19,7 @@
 - name: service enable, start
   service: name=elasticsearch state={{es_svc_state}} enabled={{es_svc_enabled}}
 
+# Install Other Generic Plugins
+- include: plugins.yml
+  when: (es_plugins is defined)
+

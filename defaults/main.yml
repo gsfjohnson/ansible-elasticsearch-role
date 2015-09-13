@@ -2,8 +2,12 @@
 # defaults file for elasticsearch-role
 
 es_version: 1.4
+es_user: root
+es_group: root
 
 es_conf_dir: "/etc/elasticsearch"
+es_home_dir: "/usr/share/elasticsearch"
+es_plugins_dir: "/usr/share/elasticsearch/plugin"
 
 es_network_host: 127.0.0.1
 es_discovery_multicast: false
