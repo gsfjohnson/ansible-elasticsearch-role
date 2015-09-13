@@ -51,6 +51,6 @@
   ignore_errors: yes
 # Fix permissions
 - file: >
-    path="{{ ec_plugin_dir }}" state=directory
+    path="{{ es_plugin_dir }}" state=directory
     owner={{ es_user }} group={{ es_group }}
     recurse=yes
