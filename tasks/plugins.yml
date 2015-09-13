@@ -52,6 +52,6 @@
 # Fix permissions
 - name: fix plugin dir permissions
   file: >
-    path="{{ es_plugin_dir }}" state=directory
+    path="{{ es_plugins_dir }}" state=directory
     owner={{ es_user }} group={{ es_group }}
     recurse=yes
