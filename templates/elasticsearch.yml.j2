@@ -17,6 +17,7 @@ node.zone: {{ es_zone }}
 node.name: {{ ansible_hostname }}
 
 network.host: {{ es_network_host }}
+network.publish_host: {{ es_publish_host }}
 
 discovery.zen.ping.multicast.enabled: {{ es_discovery_multicast }}
 {% if es_cluster_hosts|length > 0 %}

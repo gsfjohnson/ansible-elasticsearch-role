@@ -15,4 +15,4 @@
   with_items: es_yum_java_pkgs
 
 - name: install es
-  yum: pkg=elasticsearch state=installed enablerepo=elasticsearch-1.4
+  yum: pkg=elasticsearch state=installed enablerepo=elasticsearch-{{es_version}}
