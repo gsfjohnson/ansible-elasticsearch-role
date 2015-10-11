@@ -24,4 +24,4 @@ es_svc_enabled: yes
 es_svc_state: started
 
 es_yum_java_pkgs:
-  - java-1.7.0-openjdk
+  - java-1.8.0-openjdk
