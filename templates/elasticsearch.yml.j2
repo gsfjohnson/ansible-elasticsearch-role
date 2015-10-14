@@ -8,8 +8,8 @@ bootstrap.mlockall: true
 {% if es_cluster_zones|length > 0 %}
 {% if es_zone is not none %}
 # cluster zoning
-cluster.routing.allocation.awareness.attributes: zone
 cluster.routing.allocation.awareness.force.zone.values: {{ es_cluster_zones }}
+cluster.routing.allocation.awareness.attributes: zone
 node.zone: {{ es_zone }}
 {% endif %}
 {% endif %}
