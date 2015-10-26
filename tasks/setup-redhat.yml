@@ -11,8 +11,8 @@
     mode: 0644
 
 - name: install java
-  yum: name={{ item }} state=latest
+  yum: name={{ item }} state={{es_yum_java_state}}
   with_items: es_yum_java_pkgs
 
 - name: install es
-  yum: pkg=elasticsearch state=installed enablerepo=elasticsearch-{{es_version}}
+  yum: pkg=elasticsearch state={{es_yum_state}} enablerepo=elasticsearch-{{es_version}}

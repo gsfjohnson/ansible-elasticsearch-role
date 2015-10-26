@@ -10,7 +10,7 @@ es_home_dir: "/usr/share/elasticsearch"
 es_plugins_dir: "/usr/share/elasticsearch/plugins"
 
 es_network_host: 127.0.0.1
-es_publish_host: _non_loopback_
+# es_publish_host: _non_loopback_
 es_discovery_multicast: false
 es_cluster_hosts: []
 
@@ -23,5 +23,8 @@ es_replicas: 0
 es_svc_enabled: yes
 es_svc_state: started
 
+es_yum_state: installed
+
+es_yum_java_state: installed
 es_yum_java_pkgs:
   - java-1.7.0-openjdk
