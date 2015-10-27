@@ -1,8 +1,4 @@
 ---
-#- name: add rpm key
-#  rpm_key:
-#    key: http://packages.elasticsearch.org/GPG-KEY-elasticsearch
-#    state: present
 
 - name: add repo
   template:
@@ -15,4 +11,4 @@
   with_items: es_yum_java_pkgs
 
 - name: install es
-  yum: pkg=elasticsearch state={{es_yum_state}} enablerepo=elasticsearch-{{es_version}}
+  yum: name=elasticsearch state={{es_yum_state}} enablerepo=elasticsearch-{{es_version}}
