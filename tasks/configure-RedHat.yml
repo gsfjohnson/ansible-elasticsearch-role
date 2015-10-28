@@ -1,0 +1,20 @@
+---
+
+- name: configure
+  template:
+    src: "{{ item }}.j2"
+    dest: "/etc/elasticsearch/{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - elasticsearch.yml
+  notify: es restart
+
+- name: service enable, start
+  service: name=elasticsearch state={{es_svc_state}} enabled={{es_svc_enabled}}
+
+# Install Other Generic Plugins
+- include: plugins.yml
+  when: (es_plugins is defined)
+
