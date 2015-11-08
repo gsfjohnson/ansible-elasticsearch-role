@@ -2,13 +2,34 @@
 
 - name: add repo
   template:
-    src: elasticsearch.repo.j2
-    dest: /etc/yum.repos.d/elasticsearch.repo
-    mode: 0644
+    src=elasticsearch.repo.j2
+    dest=/etc/yum.repos.d/elasticsearch.repo
+    mode=0644
 
 - name: install java
-  yum: name={{ item }} state={{es_yum_java_state}}
+  yum:
+    name={{ item }}
+    state={{es_yum_java_state}}
   with_items: es_yum_java_pkgs
 
 - name: install es
-  yum: name=elasticsearch state={{es_yum_state}} enablerepo=elasticsearch-{{es_version}}
+  yum:
+    name=elasticsearch
+    state={{es_yum_state}}
+    enablerepo=elasticsearch-{{es_version}}
+
+- name: create data directory
+  file:
+    path={{es_data_dir}}
+    state=directory
+    owner=elasticsearch
+    group=elasticsearch
+    mode=0755
+
+- name: create data dir link
+  file:
+    src={{es_data_dir}}
+    dest=/var/lib/elasticsearch/{{es_cluster}}
+    state=link
+  when: es_data_dir != "/var/lib/elasticsearch/{{es_cluster}}"
+
