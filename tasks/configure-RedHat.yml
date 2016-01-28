@@ -13,7 +13,7 @@
 
 - name: template sysconfig cfg
   template:
-    src=elasticsearch.sysconfig.j2
+    src=elasticsearch-{{es_version}}.sysconfig.j2
     dest=/etc/sysconfig/elasticsearch
     owner=root
     group=root
