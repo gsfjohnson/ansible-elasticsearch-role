@@ -1,14 +1,21 @@
 ---
 
-- name: template main cfg
+- name: template elasticsearch.yml
   template:
-    src: "{{ item }}.j2"
-    dest: "/etc/elasticsearch/{{ item }}"
+    src: "elasticsearch.yml.j2"
+    dest: "/etc/elasticsearch/elasticsearch.yml"
     owner: root
     group: root
     mode: 0644
-  with_items:
-    - elasticsearch.yml
+  notify: es restart
+
+- name: template logging.yml
+  template:
+    src: "logging-{{es_version}}.yml.j2"
+    dest: "/etc/elasticsearch/logging.yml"
+    owner: root
+    group: root
+    mode: 0644
   notify: es restart
 
 - name: template sysconfig cfg
