@@ -10,7 +10,7 @@
   yum:
     name={{ item }}
     state={{es_yum_java_state}}
-  with_items: es_yum_java_pkgs
+  with_items: "{{es_yum_java_pkgs}}"
 
 - name: install es
   yum:

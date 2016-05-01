@@ -6,7 +6,7 @@
 #  action: >
 #    shell bin/plugin --remove {{ item.name }}
 #    chdir={{ es_home_dir }}
-#  with_items: es_plugins
+#  with_items: "{{es_plugins}}"
 #  ignore_errors: yes
 
 - set_fact:
@@ -25,7 +25,7 @@
     chdir: "{{ es_home_dir }}"
     creates: "{{es_plugins_dir}}/{{item.dir}}"
   when: item.url is not defined and item.dir is defined and es_version in item.versions
-  with_items: es_plugins
+  with_items: "{{es_plugins}}"
   ignore_errors: yes
 
 - name: install plugins by URL
@@ -34,7 +34,7 @@
     chdir: "{{ es_home_dir }}"
     creates: "{{es_plugins_dir}}/{{item.dir}}"
   when: item.url is defined and item.dir is defined
-  with_items: es_plugins
+  with_items: "{{es_plugins}}"
   ignore_errors: yes
 
 # Fix permissions
